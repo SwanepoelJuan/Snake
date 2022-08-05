@@ -18,6 +18,7 @@ public class Snakepit {
     private boolean inGame = false;
 
     private JLabel labels[][] = new JLabel[ROWS][COLS];
+    private SnakeCell cells[][] = new SnakeCell[ROWS][COLS];
 
     private Timer timer = new Timer();
     private JPanel panel = new JPanel();
@@ -26,6 +27,11 @@ public class Snakepit {
 
     public Snakepit() {
         // super("Snake!");
+        createView();
+    }
+
+    public void createView() {
+
     }
 
     public static void main(String[] args) {
