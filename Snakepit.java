@@ -1,7 +1,8 @@
 import javax.swing.border.Border;
-import java.util.Timer;
 import java.util.TimerTask;
 import java.awt.event.*;
+import java.util.Random;
+import java.util.Timer;
 import javax.swing.*;
 import java.awt.*;
 
@@ -71,8 +72,25 @@ public class Snakepit extends JFrame implements KeyListener {
         this.addKeyListener(this);
     }
 
-    public static void main(String[] args) {
-        new Snakepit();
+    public void placeFruit() {
+        int randomRow = randomNum(1, ROWS - 1);
+        int randomCol = randomNum(1, COLS - 1);
+
+        if (cells[randomRow][randomCol].isSnake()) {
+            placeFruit();
+        } else {
+
+            CURRENT_FRUIT_ROW = randomRow;
+            CURRENT_FRUIT_COL = randomCol;
+
+            cells[CURRENT_FRUIT_ROW][CURRENT_FRUIT_COL].setFruit(true);
+            // updateCells();
+        }
+    }
+
+    public int randomNum(int min, int max) {
+        Random randomNumbers = new Random();
+        return randomNumbers.nextInt((max - min) + 1) + min;
     }
 
     public void keyPressed(KeyEvent event) {
@@ -82,5 +100,9 @@ public class Snakepit extends JFrame implements KeyListener {
     }
 
     public void keyReleased(KeyEvent e) {
+    }
+
+    public static void main(String[] args) {
+        new Snakepit();
     }
 }
